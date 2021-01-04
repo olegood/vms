@@ -1,14 +1,14 @@
-import BaseAPIService from "./BaseAPIService"
+import BaseAPIService from './BaseAPIService';
 
 /**
  * Calls for build info.
  */
 class BuildInfoService extends BaseAPIService {
 
-    getBuildInfo() {
-        return super.get('/api/build-info')
-    }
+  getBuildInfo() {
+    return super.get('/api/build-info');
+  }
 
 }
 
-export default new BuildInfoService()
+export default new BuildInfoService();

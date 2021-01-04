@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 /**
  * Back end API calls wrapper.
@@ -7,11 +7,11 @@ import axios from 'axios'
  */
 class BaseAPIService {
 
-    get(url) {
-        const baseUrl = 'http://localhost:8082'
-        return axios.get(`${baseUrl}${url}`)
-    }
+  get(url) {
+    const baseUrl = 'http://localhost:8082';
+    return axios.get(`${baseUrl}${url}`);
+  }
 
 }
 
-export default BaseAPIService
+export default BaseAPIService;
