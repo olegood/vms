@@ -1,8 +1,8 @@
 import {render, screen} from '@testing-library/react';
 import App from './App';
 
-test('renders application version', () => {
-    render(<App/>);
-    const linkElement = screen.getByText(/version/i);
-    expect(linkElement).toBeInTheDocument();
+test('renders copyright text', () => {
+  render(<App/>);
+  const version = screen.getByText(/copyright/i);
+  expect(version).toBeInTheDocument();
 });
