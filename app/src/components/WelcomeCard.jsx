@@ -8,7 +8,7 @@ function WelcomeCard() {
         <p className="card-text">
           You can start you work by pressing login button.
         </p>
-        <a href="#" className="btn btn-primary">Login</a>
+        <a href="/login" className="btn btn-primary">Login</a>
       </div>
     </div>
   );

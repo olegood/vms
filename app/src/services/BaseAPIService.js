@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const baseUrl = 'http://localhost:8082';
+
 /**
  * Back end API calls wrapper.
  *
@@ -7,9 +9,12 @@ import axios from 'axios';
  */
 class BaseAPIService {
 
-  get(url) {
-    const baseUrl = 'http://localhost:8082';
-    return axios.get(`${baseUrl}${url}`);
+  get(url, params) {
+    return axios.get(`${baseUrl}${url}`, {params: params});
+  }
+
+  post(url, data) {
+    return axios.post(`${baseUrl}${url}`, data);
   }
 
 }
