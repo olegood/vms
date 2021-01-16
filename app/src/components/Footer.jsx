@@ -21,11 +21,13 @@ class Footer extends Component {
   render() {
     const {timestamp, version} = this.state;
     return (
-      <nav className="navbar">
-        <span>Copyright &copy; 2020-2021 All Rights Reserved</span>
-        <span title={timestamp && moment(timestamp).format('LLL')}>
+      <div className="container fixed-bottom">
+        <nav className="navbar">
+          <span>Copyright &copy; 2020-2021 All Rights Reserved</span>
+          <span title={timestamp && moment(timestamp).format('LLL')}>
         {version && `Version: ${version}`}</span>
-      </nav>
+        </nav>
+      </div>
     );
   }
 }
