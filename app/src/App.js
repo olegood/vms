@@ -5,7 +5,6 @@ import WelcomeCard from './components/WelcomeCard';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import ErrorComponent from './components/ErrorComponent';
 import PeoplePage from './components/people/PeoplePage';
-import SettingsPage from './components/settings/SettingsPage';
 
 function App() {
   return (
@@ -17,7 +16,6 @@ function App() {
           <Route path="/welcome" exact component={WelcomeCard}/>
           <Route path="/login" exact component={WelcomeCard}/>
           <Route path="/people" exact component={PeoplePage}/>
-          <Route path="/settings" exact component={SettingsPage}/>
           <Route component={ErrorComponent}/>
         </Switch>
         <Footer/>
