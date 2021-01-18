@@ -157,7 +157,7 @@ class Header extends Component {
                 <div className="dropdown-divider"/>
                 <a className="dropdown-item" href="/user/profile">Profile</a>
                 <div className="dropdown-divider"/>
-                <a className="dropdown-item disabled" href="/user/settings">Settings</a>
+                <a className="dropdown-item" href="/user/settings">Settings</a>
                 <a className="dropdown-item disabled" href="#">Sing out</a>
               </div>
             </li>
