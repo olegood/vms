@@ -4,6 +4,8 @@ import {faSearch, faUser} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Pagination from 'react-js-pagination';
 
+export const FETCH_SIZE = 7;
+
 class PeoplePage extends Component {
 
   constructor(props) {
@@ -28,11 +30,11 @@ class PeoplePage extends Component {
   }
 
   fetchPeople(page) {
-    let params = {page: page - 1, size: 7};
+    let params = {page: page - 1, size: FETCH_SIZE};
 
-    const value = document.getElementById("inputSurname").value;
-    if (value !== "") {
-      params = {surname: value, ...params}
+    const surname = document.getElementById("inputSurname").value;
+    if (surname !== "") {
+      params = {surname, ...params}
     }
 
     PeopleService.getPeople(params).then(response => {
@@ -58,76 +60,73 @@ class PeoplePage extends Component {
 
   render() {
     const {content, totalElements} = this.state;
-    const noResultsFound = Array.isArray(content) && content.length > 0;
+    const hasResults = Array.isArray(content) && (totalElements > FETCH_SIZE);
     return (
-      <div>
-        <div className="row">
-          <div className="input-group mb-3">
-            <div className="input-group-prepend">
+      <div className="container">
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
               <span className="input-group-text" id="basic-addon2">
                 <FontAwesomeIcon icon={faSearch}/>
               </span>
-            </div>
-            <input type="text" id="inputSurname" className="form-control" placeholder="Start typing for search"
-                   aria-label="Quick search" aria-describedby="basic-addon2" onChange={this.handleSearchChange}/>
           </div>
+          <input type="text" id="inputSurname" className="form-control" placeholder="Start typing for search"
+                 aria-label="Quick search" aria-describedby="basic-addon2" onChange={this.handleSearchChange}/>
         </div>
-        <div className="row">
-          <table className="table">
-            <thead className="thead-light">
-            <tr>
-              {
-                ['Surname', 'Name', 'Birth', 'Status', ''].map(title => {
-                  return <th scope="col">{title}</th>;
-                })
-              }
-            </tr>
-            </thead>
-            <tbody>
+        <table className="table table-striped">
+          <thead className="thead-light">
+          <tr>
             {
-              content.map(person => {
-                const {id, surname, name, birth, status} = person
-                return (
-                  <tr key={id}>
-                    <td className="align-middle">{surname}</td>
-                    <td className="align-middle">{name}</td>
-                    <td className="align-middle">{birth}</td>
-                    <td className="align-middle">{status}</td>
-                    <td>
-                      <div className="btn-group dropright">
-                        <button className="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <FontAwesomeIcon icon={faUser}/>
-                        </button>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <h6 className="dropdown-header">Registration</h6>
-                          <a className="dropdown-item" href="#">Personal Info</a>
-                          <a className="dropdown-item" href="#">Documents</a>
-                          <h6 className="dropdown-header">Petitions</h6>
-                          <a className="dropdown-item" href="#">New...</a>
-                          <a className="dropdown-item" href="#">All Petitions</a>
-                          <h6 className="dropdown-header">Vouchers</h6>
-                          <a className="dropdown-item" href="#">Check Status</a>
-                          <div className="dropdown-divider"/>
-                          <a className="dropdown-item" href="#">Something else here</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                );
+              ['Surname', 'Name', 'Birth', 'Status', ''].map(title => {
+                return <th scope="col">{title}</th>;
               })
             }
-            </tbody>
-            <tfoot>
-            <tr>
-              <td className="align-middle" colSpan="5">Items found: {totalElements}</td>
-            </tr>
-            </tfoot>
-          </table>
-        </div>
+          </tr>
+          </thead>
+          <tbody>
+          {
+            content.map(person => {
+              const {id, surname, name, birth, status} = person
+              return (
+                <tr key={id}>
+                  <td className="align-middle">{surname}</td>
+                  <td className="align-middle">{name}</td>
+                  <td className="align-middle">{birth}</td>
+                  <td className="align-middle">{status}</td>
+                  <td>
+                    <div className="btn-group dropright">
+                      <button className="btn btn-outline-secondary dropdown-toggle" type="button"
+                              id="dropdownMenuButton"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <FontAwesomeIcon icon={faUser}/>
+                      </button>
+                      <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <h6 className="dropdown-header">Registration</h6>
+                        <a className="dropdown-item" href="#">Personal Info</a>
+                        <a className="dropdown-item" href="#">Documents</a>
+                        <h6 className="dropdown-header">Petitions</h6>
+                        <a className="dropdown-item" href="#">New...</a>
+                        <a className="dropdown-item" href="#">All Petitions</a>
+                        <h6 className="dropdown-header">Vouchers</h6>
+                        <a className="dropdown-item" href="#">Check Status</a>
+                        <div className="dropdown-divider"/>
+                        <a className="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })
+          }
+          </tbody>
+          <tfoot>
+          <tr>
+            <td className="align-middle" colSpan="5">Items found: {totalElements}</td>
+          </tr>
+          </tfoot>
+        </table>
 
         <div className="row justify-content-center">
-          {noResultsFound && <Pagination
+          {hasResults && <Pagination
             activePage={this.state.activePage}
             itemsCountPerPage={this.state.size}
             totalItemsCount={this.state.totalElements}
@@ -139,7 +138,7 @@ class PeoplePage extends Component {
           }
         </div>
 
-        {noResultsFound && <div className="text-center">
+        {hasResults && <div className="text-center">
           Page: {this.state.activePage} of {this.state.totalPages}
         </div>
         }
