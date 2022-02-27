@@ -1,4 +1,4 @@
-package vms.api.config;
+package vms.web.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

@@ -1,4 +1,4 @@
-package vms.api;
+package vms.web.api;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,7 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class BuildInfoControllerTest {
 
-  @Autowired BuildInfoController buildInfoController;
+  @Autowired
+  BuildInfoController buildInfoController;
 
   @ParameterizedTest
   @MethodSource("buildPropertiesProvider")

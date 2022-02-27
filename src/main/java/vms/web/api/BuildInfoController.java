@@ -1,4 +1,4 @@
-package vms.api;
+package vms.web.api;
 
 import java.util.Properties;
 

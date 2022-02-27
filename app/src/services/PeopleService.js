@@ -3,7 +3,7 @@ import BaseAPIService from './BaseAPIService';
 class PersonService extends BaseAPIService {
 
   getPeople(params) {
-    return super.get('/person', params);
+    return super.get('/api/people', params);
   }
 
 }
