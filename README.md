@@ -2,7 +2,7 @@
 
 Educational web application that automates the distribution of vouchers to medical institutions (sanatoriums) for persons with any form of disability. The system registers application (petition) for a voucher to a medical facility. It also keeps history of the distribution of vouchers and allows you to build some types of reports on the vouchers utilization.
 
-## Tech Stack
+## Tech Stack (outdated)
 
 * [Java SE 11 (LTS)](https://docs.aws.amazon.com/corretto/index.html)
 * [Spring Boot](https://spring.io/projects/spring-boot)
