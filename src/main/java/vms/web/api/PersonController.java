@@ -1,4 +1,4 @@
-package vms;
+package vms.web.api;
 
 import java.util.Optional;
 
